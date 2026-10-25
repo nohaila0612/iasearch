@@ -22,3 +22,6 @@ recherche hybride kNN + BM25 (ElasticSearch), rerank par LLM.
 - `fastapi-backend/` : API de recherche (kNN sur les clusters, hybride dans le cluster, rerank)
 - `react-front/` : interface React
 - `docker-compose.yml` : ElasticSearch, Ollama, backend, front
+
+## Version 2
+Une version améliorée (recherche multi-clusters, nouvelle interface, Ollama dans le compose) se trouve dans le dossier [`v2/`](./v2). Voir `v2/README.md`.

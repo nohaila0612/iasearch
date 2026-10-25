@@ -1,6 +1,7 @@
 import math
 import os
 import requests
+from concurrent.futures import ThreadPoolExecutor
 
 OLLAMA_URL = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 RERANK_MODEL = "qwen3.5:0.8b"
@@ -50,7 +51,15 @@ def _score(query: str, doc: str) -> float:
     return 0.0
 
 
+#def rerank(query: str, docs: list[dict]) -> list[dict]:
+    #for d in docs:
+        #d["rerank_score"] = _score(query, d["line"])
+    #return sorted(docs, key=lambda d: d["rerank_score"], reverse=True)
+
+
 def rerank(query: str, docs: list[dict]) -> list[dict]:
-    for d in docs:
-        d["rerank_score"] = _score(query, d["line"])
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        scores = list(ex.map(lambda d: _score(query, d["line"]), docs))
+    for d, s in zip(docs, scores):
+        d["rerank_score"] = s
     return sorted(docs, key=lambda d: d["rerank_score"], reverse=True)
