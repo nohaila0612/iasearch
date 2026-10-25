@@ -23,3 +23,8 @@ Le rerank appelle le LLM une fois par résultat : c'est le principal poste de la
 
 ## Aperçu
 ![Interface v2](docs/capture-v2.png)
+
+## Points d'attention au premier lancement
+- Les volumes Docker sont vides au départ : les deux `ollama pull` et l'indexation (`uv run main.py`) sont indispensables avant la première recherche.
+- Si une application Ollama est déjà ouverte sur la machine, la quitter : elle occupe le port 11434 du conteneur.
+- Sur une machine avec GPU NVIDIA, le service `ollama` peut en profiter en ajoutant au compose un bloc `deploy.resources.reservations.devices` (driver `nvidia`). Sans GPU (par exemple sur Mac), tout tourne sur le processeur et la recherche est plus lente.

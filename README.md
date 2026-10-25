@@ -28,3 +28,10 @@ Une version améliorée (recherche multi-clusters, nouvelle interface, Ollama da
 
 ## Aperçu (v1)
 ![Interface v1](docs/capture-v1.png)
+
+## Remarque sur Ollama et le docker compose
+Dans cette version, le fichier `docker-compose.yml` contient un service `ollama`, mais le backend utilise l'Ollama installé directement sur la machine, à l'adresse `host.docker.internal:11434`. Le conteneur `ollama` et l'application Ollama utilisent le même port (11434) : il ne faut donc pas lancer les deux en même temps. C'est pourquoi la commande de lancement ne démarre que `elasticsearch`, `backend` et `front`.
+
+Cette contrainte vient de mon environnement de développement : sur Mac, Docker n'a pas accès au GPU, et le téléchargement des modèles dans le conteneur échouait au départ.
+
+**La version où tout tourne dans le docker compose, y compris Ollama, est dans le dossier [`v2/`](./v2).**
