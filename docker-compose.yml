@@ -1,0 +1,44 @@
+services:
+  elasticsearch:
+    image: elasticsearch:9.3.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - http.cors.enabled=true
+      - 'http.cors.allow-origin="*"'
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9200:9200"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+
+  backend:
+    build: ./fastapi-backend
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ELASTICSEARCH_HOST=http://elasticsearch:9200
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    depends_on:
+      - elasticsearch
+
+  front:
+    build: ./react-front
+    container_name: react-front
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  ollama_data:
