@@ -35,3 +35,6 @@ Dans cette version, le fichier `docker-compose.yml` contient un service `ollama`
 Cette contrainte vient de mon environnement de développement : sur Mac, Docker n'a pas accès au GPU, et le téléchargement des modèles dans le conteneur échouait au départ.
 
 **La version où tout tourne dans le docker compose, y compris Ollama, est dans le dossier [`v2/`](./v2).**
+
+## Données
+Cette version indexe le jeu de données du TD (lien pCloud, environ 1000 lignes). La version 2 (dossier `v2/`) indexe un échantillon de 2000 lignes tiré du fichier complet `objet_consultations_100000.txt`.
