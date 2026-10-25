@@ -25,3 +25,6 @@ recherche hybride kNN + BM25 (ElasticSearch), rerank par LLM.
 
 ## Version 2
 Une version améliorée (recherche multi-clusters, nouvelle interface, Ollama dans le compose) se trouve dans le dossier [`v2/`](./v2). Voir `v2/README.md`.
+
+## Aperçu (v1)
+![Interface v1](docs/capture-v1.png)

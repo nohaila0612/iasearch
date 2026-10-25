@@ -20,3 +20,6 @@ Les ports sont les mêmes que ceux de la v1 : arrêter la v1 avant (`docker comp
 
 ## Remarque
 Le rerank appelle le LLM une fois par résultat : c'est le principal poste de latence, surtout sur CPU (Docker sur Mac n'utilise pas le GPU).
+
+## Aperçu
+![Interface v2](docs/capture-v2.png)
