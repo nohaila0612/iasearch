@@ -5,7 +5,7 @@ Version améliorée de IA Search, sur le même sujet : moteur de recherche séma
 ## Ce qui change par rapport à la v1
 - Recherche dans les 3 clusters les plus proches (au lieu d'un seul)
 - Rerank en parallèle, modèles gardés en mémoire
-- Noms de clusters générés par le LLM lors de l'indexation
+- Noms de clusters construits avec les mots les plus caractéristiques de chaque groupe (TF-IDF)
 - Nouvelle interface : jauge de pertinence, couleur par groupe, mots surlignés
 - Ollama dans le docker compose
 
